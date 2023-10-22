@@ -2,3 +2,8 @@ node_modules
 .DS_Store
 .env
 logs
+
+# Removed CORs Options
+config/allowedOrigins.js
+config/corsOptions.js
+middlewares/credentials.js 

@@ -7,8 +7,6 @@ import express from 'express';
 const app = express();
 
 import cors from 'cors';
-import corsOptions from './config/corsOptions.js';
-import credentials from './middlewares/credentials.js';
 import { databaseConnection } from './config/db.js';
 import userRoutes from "./routes/userRoutes.js";
 import urlRoutes from "./routes/urlRoutes.js";
@@ -24,12 +22,8 @@ databaseConnection();
 // custom middleware logger
 app.use(logger);
 
-// Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
-app.use(credentials);
-
 // Cross Origin Resource Sharing
-app.use(cors(corsOptions));
+app.use(cors());
 
 // built-in middleware to handle urlencoded form data
 app.use(express.urlencoded({ extended: false }));
@@ -42,7 +36,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/url", urlRoutes);
 
 // Make the short url to redirect to the Original Url
-app.get("/:id", cors(), (req, res) => {
+app.get("/:id", (req, res) => {
     const { id } = req.params;
 
     // Construct the redirect URL
