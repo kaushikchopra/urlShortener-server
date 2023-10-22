@@ -42,12 +42,12 @@ app.use("/api/auth", userRoutes);
 app.use("/api/url", urlRoutes);
 
 // Make the short url to redirect to the Original Url
-app.get("/:id", (req, res) => {
+app.get("/:id", cors(), (req, res) => {
     const { id } = req.params;
-  
+
     // Construct the redirect URL
     const redirectUrl = `/api/url/${id}`;
-  
+
     // Redirect to the constructed URL
     res.redirect(redirectUrl);
 });

@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { isAuthenticated } from "../middlewares/authMiddlewares.js";
 import { shortenUrl, redirectToOriginalUrl, dashboard, showAllUrls } from "../controllers/urlControllers.js"
 
@@ -14,7 +15,7 @@ router.get("/dashboard", isAuthenticated, dashboard);
 router.get("/created-url", isAuthenticated, showAllUrls);
 
 // Redirecting to Original URL route
-router.get("/:id", redirectToOriginalUrl)
+router.get("/:id", cors(), redirectToOriginalUrl)
 
 
 export default router;
