@@ -1,4 +1,4 @@
-import { DAILY_LIMIT, MONTHLY_LIMIT, clientURL } from "../config/config.js";
+import { BASE_URL, DAILY_LIMIT, MONTHLY_LIMIT } from "../config/config.js";
 import { Url } from "../models/URLShortener.js";
 import validUrl from "valid-url";
 import { nanoid } from "nanoid";
@@ -68,7 +68,7 @@ const shortenUrl = async (req, res) => {
 
 
         // Create a new short URL entry and save it
-        const shortUrl = `${clientURL}/${urlId}`;
+        const shortUrl = `${BASE_URL}/${urlId}`;
 
         const url = new Url({
             user: req.user.userId,
